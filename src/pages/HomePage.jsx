@@ -3,28 +3,182 @@ import styled from 'styled-components';
 import { FaUsers, FaNetworkWired, FaClock } from 'react-icons/fa';
 import Testimonial from '../components/common/Testimonial';
 
-const PageWrapper = styled.div``;
-const HeroSection = styled.section``;
-const HeroText = styled.div``;
-const H1 = styled.h1``;
+const PageWrapper = styled.div`
+  direction: rtl;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+`;
+
+const HeroSection = styled.section`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  margin-bottom: 4rem;
+  
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+`;
+
+const HeroText = styled.div`
+  max-width: 600px;
+`;
+
+const H1 = styled.h1`
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: ${({ theme }) => theme.colors.text};
+  line-height: 1.2;
+  
+  @media (max-width: 768px) {
+    font-size: 2rem;
+  }
+`;
+
 const HeroQuote = styled.p`
   font-size: 1.1rem;
   color: ${({ theme }) => theme.colors.primary};
   margin-bottom: 1.5rem;
   font-style: italic;
+  line-height: 1.6;
 `;
-const Subtitle = styled.p``;
-const CTAButton = styled.a``;
-const HeroImage = styled.div``;
-const AsSeenInSection = styled.section``;
-const ProjectSection = styled.section``;
-const ProjectTitle = styled.h2``;
-const ProjectSubtitle = styled.h3``;
-const ProjectStats = styled.div``;
-const Stat = styled.div``;
-const TestimonialsSection = styled.section``;
-const TestimonialsTitle = styled.h2``;
-const TestimonialsList = styled.div``;
+
+const Subtitle = styled.p`
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  color: ${({ theme }) => theme.colors.textLight};
+`;
+
+const CTAButton = styled.a`
+  display: inline-block;
+  padding: 1rem 2rem;
+  background-color: ${({ theme }) => theme.colors.primary};
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+  
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.primaryDark};
+  }
+`;
+
+const HeroImage = styled.div`
+  img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  }
+`;
+
+const AsSeenInSection = styled.section`
+  text-align: center;
+  padding: 3rem 0;
+  background-color: ${({ theme }) => theme.colors.background};
+  margin-bottom: 4rem;
+  
+  h3 {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: ${({ theme }) => theme.colors.textLight};
+  }
+  
+  div {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    align-items: center;
+    flex-wrap: wrap;
+    
+    img {
+      height: 40px;
+      opacity: 0.7;
+      transition: opacity 0.3s ease;
+      
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+`;
+
+const ProjectSection = styled.section`
+  padding: 4rem 0;
+  text-align: center;
+  margin-bottom: 4rem;
+`;
+
+const ProjectTitle = styled.h2`
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: ${({ theme }) => theme.colors.text};
+`;
+
+const ProjectSubtitle = styled.h3`
+  font-size: 1.3rem;
+  color: ${({ theme }) => theme.colors.primary};
+  margin-bottom: 2rem;
+`;
+
+const ProjectStats = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 3rem;
+  
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const Stat = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  
+  svg {
+    font-size: 2.5rem;
+    color: ${({ theme }) => theme.colors.primary};
+  }
+  
+  span {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: ${({ theme }) => theme.colors.text};
+    display: block;
+  }
+`;
+
+const TestimonialsSection = styled.section`
+  padding: 4rem 0;
+  background-color: ${({ theme }) => theme.colors.background};
+`;
+
+const TestimonialsTitle = styled.h2`
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 3rem;
+  color: ${({ theme }) => theme.colors.text};
+`;
+
+const TestimonialsList = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+`;
 
 const HomePage = () => {
   return (

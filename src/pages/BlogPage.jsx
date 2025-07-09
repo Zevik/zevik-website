@@ -1,19 +1,78 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const PageContainer = styled.div``;
-const Title = styled.h1``;
-const Section = styled.section``;
-const SubTitle = styled.h2``;
-const Paragraph = styled.p``;
+const PageContainer = styled.div`
+  direction: rtl;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+`;
+
+const Title = styled.h1`
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: ${({ theme }) => theme.colors.text};
+  line-height: 1.2;
+  text-align: center;
+  
+  @media (max-width: 768px) {
+    font-size: 2rem;
+  }
+`;
+
+const Section = styled.section`
+  margin-bottom: 4rem;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+`;
+
+const SubTitle = styled.h2`
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: ${({ theme }) => theme.colors.text};
+  line-height: 1.3;
+  
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+  }
+`;
+
+const Paragraph = styled.p`
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  color: ${({ theme }) => theme.colors.text};
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+`;
+
 const HighlightQuote = styled.blockquote`
   font-size: 1.1rem;
   color: ${({ theme }) => theme.colors.primary};
   margin: 2rem 0;
   border-right: 4px solid ${({ theme }) => theme.colors.primary};
-  padding-right: 1.5rem;
+  padding: 1.5rem;
+  padding-right: 2rem;
   font-style: italic;
-  background: #f7f7fa;
+  background: ${({ theme }) => theme.colors.background};
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+  
+  @media (max-width: 768px) {
+    padding: 1rem;
+    padding-right: 1.5rem;
+    margin: 1.5rem 0;
+  }
 `;
 
 const BlogPage = () => (
