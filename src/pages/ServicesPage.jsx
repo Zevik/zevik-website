@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Testimonial from '../components/common/Testimonial';
+import { FaUsers, FaRobot, FaChalkboardTeacher, FaLightbulb } from 'react-icons/fa';
 
 const PageContainer = styled.div`
   direction: rtl;
@@ -101,6 +102,37 @@ const TestimonialsSection = styled.section`
   }
 `;
 
+const ServiceCard = styled.div`
+  padding: 2rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-5px);
+  }
+  
+  svg {
+    font-size: 2.5rem;
+    color: ${({ theme }) => theme.colors.primary};
+    margin-bottom: 1.5rem;
+  }
+  
+  h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: ${({ theme }) => theme.colors.text};
+  }
+  
+  p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: ${({ theme }) => theme.colors.textLight};
+  }
+`;
+
 const ServicesPage = () => {
   return (
     <PageContainer>
@@ -114,18 +146,51 @@ const ServicesPage = () => {
         <p>הכל מתחיל בהקשבה אמיתית – להבין את הצרכים, את השפה, את הדינמיקה. משם בונים תהליך מדויק, עם כלים טכנולוגיים שמשרתים את האנשים, לא להפך.</p>
       </ProcessSection>
       <ServicesList>
-        {/* פירוט השירותים */}
+        <ServiceCard>
+          <FaUsers />
+          <h3>ייעוץ וליווי קהילות</h3>
+          <p>בניית אסטרטגיה, הכשרת מנהלים, פיתוח תוכן, ניהול משברים ובניית תהליכי עבודה לקהילות דיגיטליות.</p>
+        </ServiceCard>
+        <ServiceCard>
+          <FaRobot />
+          <h3>פיתוח אוטומציות</h3>
+          <p>פיתוח כלים וטכנולוגיות לניהול יעיל של קהילות, כולל בוטים, מערכות ניטור ואנליטיקס מתקדמות.</p>
+        </ServiceCard>
+        <ServiceCard>
+          <FaChalkboardTeacher />
+          <h3>הרצאות וסדנאות</h3>
+          <p>הרצאות מרתקות על ניהול קהילות, מנהיגות דיגיטלית, וסדנאות מעשיות לצוותים ומנהלים.</p>
+        </ServiceCard>
+        <ServiceCard>
+          <FaLightbulb />
+          <h3>ייעוץ אסטרטגי</h3>
+          <p>ליווי ארגונים בתהליכי דיגיטציה, בניית אסטרטגיית נוכחות דיגיטלית ופיתוח מודלים קהילתיים.</p>
+        </ServiceCard>
       </ServicesList>
       <TestimonialsSection>
         <h2>לקוחות ממליצים</h2>
-        <Testimonial
-          quote="הדרך לבנות קהילה בריאה היא לאפשר שיח, אך להציב גבולות ברורים."
-          name="זאביק אבינר"
-        />
-        <Testimonial
-          quote="הכלים שזאביק פיתח שינו לנו את הדרך בה אנחנו מנהלים את הקהילה."
-          name="מנהלת קהילת Y"
-        />
+        <div>
+          <Testimonial
+            quote="זאביק הצליח לקחת את הקהילה שלנו לרמה הבאה. הכלים והתובנות שהוא הביא שינו את הדרך בה אנחנו מתקשרים עם הקהל שלנו."
+            name="רונית כהן"
+            title="מנהלת קהילת 'ירושלמים מחוברים'"
+          />
+          <Testimonial
+            quote="ההרצאה של זאביק פתחה לנו את העיניים לגבי הפוטנציאל העצום שיש בניהול נכון של קהילה דיגיטלית."
+            name="יוסי לוי"
+            title="מנכ״ל חברת טכנולוגיה"
+          />
+          <Testimonial
+            quote="האוטומציות שזאביק פיתח עבורנו חסכו לנו שעות של עבודה ידנית ואפשרו לנו להתמקד בדברים החשובים באמת."
+            name="מיכל אברהם"
+            title="מנהלת פיתוח עסקי"
+          />
+          <Testimonial
+            quote="הליווי המקצועי של זאביק עזר לנו להפוך את הקהילה שלנו ממקום של תלונות למרחב של שיתוף פעולה ויצירה משותפת."
+            name="דוד ישראלי"
+            title="מייסד קהילת 'עסקים בירושלים'"
+          />
+        </div>
       </TestimonialsSection>
     </PageContainer>
   );

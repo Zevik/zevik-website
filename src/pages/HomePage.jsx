@@ -193,37 +193,52 @@ const HomePage = () => {
           <CTAButton href="/contact">לייעוץ ופיתוח פתרונות &gt;</CTAButton>
         </HeroText>
         <HeroImage>
-          <img src="/src/assets/images/zevik-hero.jpg" alt="זאביק אבינר" />
+          <img src="/images/zevik-hero.jpg" alt="זאביק אבינר" />
         </HeroImage>
       </HeroSection>
       <AsSeenInSection>
         <h3>התארחתי וסוקרתי ב:</h3>
         <div>
-          <img src="/src/assets/images/logo-mako.png" alt="Mako"/>
-          <img src="/src/assets/images/logo-walla.png" alt="Walla"/>
-          <img src="/src/assets/images/logo-makor-rishon.png" alt="מקור ראשון"/>
+          <img src="/images/media/ynet-logo.png" alt="Ynet" />
+          <img src="/images/media/kan-logo.png" alt="כאן" />
+          <img src="/images/media/mako-logo.png" alt="מאקו" />
+          <img src="/images/media/calcalist-logo.png" alt="כלכליסט" />
+          <img src="/images/media/globes-logo.png" alt="גלובס" />
         </div>
       </AsSeenInSection>
       <ProjectSection>
-        <ProjectTitle>פרויקט הדגל: קהילת "ירושלמים וירושלמיות"</ProjectTitle>
-        <ProjectSubtitle>איך הפכנו קבוצת פייסבוק ללב הפועם של עיר שלמה</ProjectSubtitle>
-        <p>"הקבוצות אינן רק זירות וירטואליות לשיח – הן משפיעות באופן ישיר על החיים בעיר, על התודעה הציבורית, ועל היחסים בין תושביה."</p>
+        <ProjectTitle>מספרים מדברים</ProjectTitle>
+        <ProjectSubtitle>יותר מעשור של בניית קהילות דיגיטליות</ProjectSubtitle>
         <ProjectStats>
-          <Stat><FaUsers /><span>+500,000</span>חברים בכלל הרשת</Stat>
-          <Stat><FaNetworkWired /><span>+120</span>קהילות מנוהלות</Stat>
-          <Stat><FaClock /><span>24/7</span>ניטור וניהול אוטומטי</Stat>
+          <Stat>
+            <FaUsers />
+            <span>500,000+</span>
+            חברים בקהילות
+          </Stat>
+          <Stat>
+            <FaNetworkWired />
+            <span>50+</span>
+            קהילות פעילות
+          </Stat>
+          <Stat>
+            <FaClock />
+            <span>12</span>
+            שנות ניסיון
+          </Stat>
         </ProjectStats>
       </ProjectSection>
       <TestimonialsSection>
-        <TestimonialsTitle>לקוחות ממליצים</TestimonialsTitle>
+        <TestimonialsTitle>מה אומרים עלי</TestimonialsTitle>
         <TestimonialsList>
           <Testimonial
-            quote="האתגר הגדול הוא איך הופכים אותה ל'קהילה' ולא לזירת שנאה. בזכות זאביק למדנו לנהל שיח אמיתי, מכבד ומגוון."
-            name="שם, תפקיד, שם הארגון"
+            quote="זאביק הוא מומחה אמיתי בתחום הקהילות הדיגיטליות. הוא הצליח לקחת את הקהילה שלנו למקום חדש לגמרי."
+            name="שרה לוי"
+            title="מנהלת קהילת 'ירושלמים בעסקים'"
           />
           <Testimonial
-            quote="ההרצאה של זאביק על ניהול שיח ברשת פתחה לנו את העיניים. הוא נתן לנו כלים פרקטיים שהתחלנו ליישם מיד וראינו תוצאות."
-            name="שם, מנהל/ת קהילת X"
+            quote="הכלים והתובנות שזאביק מביא איתו שינו את הדרך בה אנחנו חושבים על ניהול קהילה."
+            name="יעקב כהן"
+            title="מייסד 'מיזם החיבורים'"
           />
         </TestimonialsList>
       </TestimonialsSection>
