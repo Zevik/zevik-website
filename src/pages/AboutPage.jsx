@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { FaBridge, FaHeart, FaBrain } from 'react-icons/fa';
+import { FaUsers, FaHeart, FaBrain } from 'react-icons/fa';
 
 const PageContainer = styled.div``;
 const AboutHeader = styled.div``;
@@ -39,7 +39,7 @@ const AboutPage = () => {
       <PhilosophySection>
         <PhilosophyTitle>עקרונות שמנחים אותי</PhilosophyTitle>
         <PhilosophyList>
-          <PhilosophyItem><FaBridge />"אני לא מאפשר לכתוב 'החרדים', 'הערבים', 'הדתיים', 'הלהט"בים', 'השמאלנים', 'המתנחלים' – ה'אתם' וה'אנחנו' הם שורש הגזענות."</PhilosophyItem>
+          <PhilosophyItem><FaUsers />"אני לא מאפשר לכתוב 'החרדים', 'הערבים', 'הדתיים', 'הלהט"בים', 'השמאלנים', 'המתנחלים' – ה'אתם' וה'אנחנו' הם שורש הגזענות."</PhilosophyItem>
           <PhilosophyItem><FaHeart />טכנולוגיה עם לב: אוטומציה וקוד הם כלים מדהימים, אבל הם תמיד צריכים לשרת את המטרה האנושית – להקל, לעזור וליצור קשר.</PhilosophyItem>
           <PhilosophyItem><FaBrain />"הקבוצה יצרה את הקהילה... פתאום נוצר מרכז, מקום מפגש – הוא דיגיטלי, אמנם, אבל הוא בפירוש מרכז חיי השכונה."</PhilosophyItem>
         </PhilosophyList>
