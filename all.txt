@@ -1,0 +1,747 @@
+npm install styled-components react-router-dom react-icons
+
+שלב 2: מבנה התיקיות
+
+בתוך תיקיית src, צור את מבנה התיקיות הבא. זהו מבנה מקצועי וקל לתחזוקה:
+
+Generated code
+src/
+|-- assets/
+|   |-- images/
+|   |   |-- zevik-hero.jpg       (תמונה ראשית לעמוד הבית)
+|   |   |-- zevik-about.jpg      (תמונה לעמוד אודות)
+|   |   |-- logo-mako.png
+|   |   |-- logo-walla.png
+|   |   |-- logo-makor-rishon.png
+|   |   `-- (שאר הלוגואים)
+|-- components/
+|   |-- common/
+|   |   |-- Header.jsx
+|   |   |-- Footer.jsx
+|   |   |-- Button.jsx
+|   |   `-- Card.jsx
+|   `-- layout/
+|       |-- Section.jsx
+|       `-- Container.jsx
+|-- pages/
+|   |-- HomePage.jsx
+|   |-- AboutPage.jsx
+|   |-- ServicesPage.jsx
+|   |-- MediaPage.jsx
+|   |-- BlogPage.jsx
+|   `-- ContactPage.jsx
+|-- styles/
+|   |-- GlobalStyles.js
+|   `-- theme.js
+|-- App.jsx
+`-- main.jsx
+IGNORE_WHEN_COPYING_START
+content_copy
+download
+Use code with caution.
+IGNORE_WHEN_COPYING_END
+שלב 3: כתיבת הקוד
+
+כעת נמלא כל קובץ בקוד המתאים.
+
+src/styles/theme.js
+(כאן נגדיר את פלטת הצבעים והפונטים מהאפיון)
+
+Generated javascript
+export const theme = {
+  colors: {
+    primary: '#0A2342',      // כחול כהה
+    secondary: '#FF8C42',    // כתום תוסס
+    lightGray: '#F5F5F7',
+    white: '#FFFFFF',
+    darkGray: '#333333',
+  },
+  fonts: {
+    headings: 'Rubik, sans-serif',
+    body: 'Assistant, sans-serif',
+  },
+  breakpoints: {
+    mobile: '768px',
+    tablet: '1024px',
+  },
+};
+IGNORE_WHEN_COPYING_START
+content_copy
+download
+Use code with caution.
+JavaScript
+IGNORE_WHEN_COPYING_END
+
+src/styles/GlobalStyles.js
+(כאן נגדיר את העיצוב הכללי של האתר)
+
+Generated javascript
+import { createGlobalStyle } from 'styled-components';
+
+export const GlobalStyles = createGlobalStyle`
+  @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@400;700&family=Rubik:wght@500;700&display=swap');
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: ${({ theme }) => theme.fonts.body};
+    color: ${({ theme }) => theme.colors.darkGray};
+    background-color: ${({ theme }) => theme.colors.white};
+    line-height: 1.6;
+    direction: rtl; /* Set direction to Right-to-Left */
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: ${({ theme }) => theme.fonts.headings};
+    color: ${({ theme }) => theme.colors.primary};
+    line-height: 1.2;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  img {
+    max-width: 100%;
+    display: block;
+  }
+`;
+IGNORE_WHEN_COPYING_START
+content_copy
+download
+Use code with caution.
+JavaScript
+IGNORE_WHEN_COPYING_END
+
+src/main.jsx
+(רק נוודא שהוא עוטף את האפליקציה ב-BrowserRouter)
+
+Generated javascript
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
+import App from './App';
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </React.StrictMode>
+);
+IGNORE_WHEN_COPYING_START
+content_copy
+download
+Use code with caution.
+JavaScript
+IGNORE_WHEN_COPYING_END
+
+src/App.jsx
+(זהו הקובץ המרכזי שמנהל את כל האתר)
+
+Generated javascript
+import { ThemeProvider } from 'styled-components';
+import { Routes, Route } from 'react-router-dom';
+import { theme } from './styles/theme';
+import { GlobalStyles } from './styles/GlobalStyles';
+
+// Import Components
+import Header from './components/common/Header';
+import Footer from './components/common/Footer';
+
+// Import Pages
+import HomePage from './pages/HomePage';
+import AboutPage from './pages/AboutPage';
+import ContactPage from './pages/ContactPage';
+// Add other pages later: ServicesPage, MediaPage, BlogPage
+
+function App() {
+  return (
+    <ThemeProvider theme={theme}>
+      <GlobalStyles />
+      <Header />
+      <main>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          {/* Define other routes here as you build them */}
+        </Routes>
+      </main>
+      <Footer />
+    </ThemeProvider>
+  );
+}
+
+export default App;
+IGNORE_WHEN_COPYING_START
+content_copy
+download
+Use code with caution.
+JavaScript
+IGNORE_WHEN_COPYING_END
+
+src/components/common/Header.jsx
+
+Generated javascript
+import { NavLink } from 'react-router-dom';
+import styled from 'styled-components';
+import { theme } from '../../styles/theme';
+
+const NavContainer = styled.header`
+  background-color: ${theme.colors.white};
+  padding: 1rem 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid ${theme.colors.lightGray};
+  position: sticky;
+  top: 0;
+  z-index: 100;
+`;
+
+const Logo = styled(NavLink)`
+  font-family: ${theme.fonts.headings};
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: ${theme.colors.primary};
+`;
+
+const NavLinks = styled.nav`
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+`;
+
+const StyledNavLink = styled(NavLink)`
+  font-size: 1rem;
+  font-weight: 500;
+  color: ${theme.colors.darkGray};
+  transition: color 0.2s ease-in-out;
+
+  &.active {
+    color: ${theme.colors.secondary};
+  }
+
+  &:hover {
+    color: ${theme.colors.secondary};
+  }
+`;
+
+const CTAButton = styled(StyledNavLink)`
+  background-color: ${theme.colors.secondary};
+  color: ${theme.colors.white};
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+
+  &:hover {
+    color: ${theme.colors.white};
+    opacity: 0.9;
+  }
+`;
+
+const Header = () => {
+  return (
+    <NavContainer>
+      <Logo to="/">זאביק אבינר</Logo>
+      <NavLinks>
+        <StyledNavLink to="/">עמוד הבית</StyledNavLink>
+        <StyledNavLink to="/about">הסיפור שלי</StyledNavLink>
+        {/* Add more links later */}
+        <CTAButton to="/contact">צרו קשר</CTAButton>
+      </NavLinks>
+    </NavContainer>
+  );
+};
+
+export default Header;
+IGNORE_WHEN_COPYING_START
+content_copy
+download
+Use code with caution.
+JavaScript
+IGNORE_WHEN_COPYING_END
+
+src/components/common/Footer.jsx
+
+Generated javascript
+import styled from 'styled-components';
+import { FaLinkedin, FaFacebook, FaYoutube, FaInstagram } from 'react-icons/fa';
+
+const FooterContainer = styled.footer`
+  background-color: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.white};
+  padding: 2rem 5%;
+  text-align: center;
+`;
+
+const SocialLinks = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+
+  a {
+    color: white;
+    font-size: 1.5rem;
+    transition: color 0.2s;
+    &:hover {
+      color: ${({ theme }) => theme.colors.secondary};
+    }
+  }
+`;
+
+const Copyright = styled.p`
+  font-size: 0.9rem;
+`;
+
+const Footer = () => {
+  const currentYear = new Date().getFullYear();
+  return (
+    <FooterContainer>
+      <SocialLinks>
+        <a href="https://il.linkedin.com/in/zevik-aviner-76b56a1b8" target="_blank" rel="noopener noreferrer"><FaLinkedin /></a>
+        <a href="https://www.facebook.com/zevik.aviner" target="_blank" rel="noopener noreferrer"><FaFacebook /></a>
+        <a href="https://www.youtube.com/@zevik.aviner" target="_blank" rel="noopener noreferrer"><FaYoutube /></a>
+        <a href="https://www.instagram.com/zevik.aviner/" target="_blank" rel="noopener noreferrer"><FaInstagram /></a>
+      </SocialLinks>
+      <Copyright>© {currentYear} זאביק אבינר. כל הזכויות שמורות.</Copyright>
+    </FooterContainer>
+  );
+};
+
+export default Footer;
+IGNORE_WHEN_COPYING_START
+content_copy
+download
+Use code with caution.
+JavaScript
+IGNORE_WHEN_COPYING_END
+
+src/pages/HomePage.jsx
+
+Generated javascript
+import styled from 'styled-components';
+
+// This is just the main structure. You'd typically create
+// separate components for each section (HeroSection, ServicesSection, etc.)
+// to keep this file clean.
+
+const PageWrapper = styled.div`
+  /* Add page specific styles if needed */
+`;
+
+const HeroSection = styled.section`
+  display: flex;
+  align-items: center;
+  padding: 4rem 5%;
+  background-color: ${({ theme }) => theme.colors.lightGray};
+  gap: 2rem;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobile}) {
+    flex-direction: column;
+    text-align: center;
+  }
+`;
+
+const HeroText = styled.div`
+  flex: 1;
+`;
+
+const HeroImage = styled.div`
+  flex: 1;
+  max-width: 400px;
+  img {
+    border-radius: 10px;
+  }
+`;
+
+const H1 = styled.h1`
+  font-size: 3rem;
+  margin-bottom: 1rem;
+`;
+
+const Subtitle = styled.p`
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+`;
+
+const CTAButton = styled.a`
+  display: inline-block;
+  background-color: ${({ theme }) => theme.colors.secondary};
+  color: white;
+  padding: 0.8rem 1.6rem;
+  border-radius: 5px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  transition: transform 0.2s;
+
+  &:hover {
+    transform: translateY(-3px);
+  }
+`;
+
+const AsSeenInSection = styled.section`
+    padding: 2rem 5%;
+    text-align: center;
+    h3 {
+        margin-bottom: 1.5rem;
+        color: #888;
+        font-weight: 500;
+    }
+    div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 3rem;
+        filter: grayscale(100%);
+        opacity: 0.7;
+    }
+    img {
+        height: 30px;
+    }
+`;
+
+// You would continue to build out the other sections (Services, Philosophy, etc.)
+// in a similar fashion, likely as separate components imported here.
+
+const HomePage = () => {
+  return (
+    <PageWrapper>
+      <HeroSection>
+        <HeroText>
+          <H1>זאביק אבינר | הופכים קהילות דיגיטליות למנוע צמיחה אנושי ועסקי</H1>
+          <Subtitle>
+            מומחה לאוטומציה, אדריכל קהילות וחדשנות דיגיטלית. אני מייעץ, מרצה ומפתח פתרונות טכנולוגיים שמחברים בין אנשים.
+          </Subtitle>
+          <CTAButton href="/contact">לייעוץ ופיתוח פתרונות ></CTAButton>
+        </HeroText>
+        <HeroImage>
+          <img src="/src/assets/images/zevik-hero.jpg" alt="זאביק אבינר" />
+        </HeroImage>
+      </HeroSection>
+      
+      <AsSeenInSection>
+        <h3>התארחתי וסוקרתי ב:</h3>
+        <div>
+            <img src="/src/assets/images/logo-mako.png" alt="Mako"/>
+            <img src="/src/assets/images/logo-walla.png" alt="Walla"/>
+            <img src="/src/assets/images/logo-makor-rishon.png" alt="מקור ראשון"/>
+            {/* Add more logos here */}
+        </div>
+      </AsSeenInSection>
+
+      {/* Placeholder for other sections */}
+      <div style={{textAlign: 'center', padding: '4rem', backgroundColor: '#f9f9f9'}}>
+        <h2>אזור לשירותים, פילוסופיה ובלוג</h2>
+        <p>כאן יתווספו שאר חלקי עמוד הבית לפי האפיון.</p>
+      </div>
+
+    </PageWrapper>
+  );
+};
+
+export default HomePage;
+IGNORE_WHEN_COPYING_START
+content_copy
+download
+Use code with caution.
+JavaScript
+IGNORE_WHEN_COPYING_END
+
+src/pages/AboutPage.jsx
+
+Generated javascript
+import styled from 'styled-components';
+
+const PageContainer = styled.div`
+    padding: 3rem 5%;
+`;
+
+const AboutHeader = styled.div`
+    text-align: center;
+    margin-bottom: 3rem;
+    h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+`;
+
+const IntroText = styled.p`
+    font-size: 1.1rem;
+    max-width: 800px;
+    margin: 0 auto 3rem auto;
+    line-height: 1.7;
+`;
+
+const TimelineSection = styled.section`
+    // Here you would build the visual timeline component
+    h2 {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+`;
+
+
+const AboutPage = () => {
+    return (
+        <PageContainer>
+            <AboutHeader>
+                <h1>נעים להכיר, אני זאביק אבינר</h1>
+                {/* You can place a large authentic image here */}
+            </AboutHeader>
+            <IntroText>
+                רבים מכירים אותי כ'ראש העיר הווירטואלי של ירושלים', אבל הסיפור שלי מתחיל הרבה לפני הפייסבוק. הוא מתחיל בבית של אבא, הרב שלמה אבינר, מהמנהיגים הבולטים בציונות הדתית, ממשיך במסדרונות האוניברסיטה העברית עם תארים בכימיה, ומתחבר בנקודה שבה הבנתי שהתשוקה האמיתית שלי היא לחבר בין אנשים באמצעות טכנולוגיה, ולהפוך מרחב דיגיטלי לקהילה אמיתית.
+            </IntroText>
+
+            <TimelineSection>
+                <h2>המסע שלי</h2>
+                <p style={{textAlign: 'center'}}>כאן יבנה רכיב ציר זמן ויזואלי המציג את התחנות המרכזיות בחיי לפי האפיון.</p>
+                 {/* Example of one timeline item */}
+                 <div style={{borderRight: '3px solid #FF8C42', paddingRight: '20px', margin: '20px auto', maxWidth: '600px'}}>
+                    <h3>החיבור: הקמת הקהילות (2012-היום)</h3>
+                    <p>איך חלום להכיר את השכנים בנחלאות הפך לאימפריה של 120 קבוצות וחצי מיליון איש. והעקרונות שהובילו את הניהול: מלחמה בגזענות, עידוד שיח מכבד וניהול שפה ככלי לשינוי חברתי.</p>
+                 </div>
+            </TimelineSection>
+        </PageContainer>
+    );
+};
+
+export default AboutPage;
+IGNORE_WHEN_COPYING_START
+content_copy
+download
+Use code with caution.
+JavaScript
+IGNORE_WHEN_COPYING_END
+
+src/pages/ContactPage.jsx
+
+Generated javascript
+import React, { useState } from 'react';
+import styled from 'styled-components';
+
+const PageContainer = styled.div`
+  padding: 4rem 5%;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+`;
+
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 2rem;
+  text-align: right;
+`;
+
+const Input = styled.input`
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-family: inherit;
+  font-size: 1rem;
+`;
+
+const Textarea = styled.textarea`
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-family: inherit;
+  font-size: 1rem;
+  min-height: 150px;
+`;
+
+const Select = styled.select`
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-family: inherit;
+  font-size: 1rem;
+`;
+
+const SubmitButton = styled.button`
+    display: inline-block;
+    background-color: ${({ theme }) => theme.colors.secondary};
+    color: white;
+    padding: 0.8rem 1.6rem;
+    border-radius: 5px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.2s;
+
+    &:hover {
+        opacity: 0.9;
+    }
+`;
+
+const ContactPage = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    subject: '',
+    message: ''
+  });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Here you would typically send the data to a server or service like Formspree
+    console.log('Form submitted:', formData);
+    alert('תודה על פנייתך! אחזור אליך בהקדם.');
+  };
+
+  return (
+    <PageContainer>
+      <h1>דברו איתי</h1>
+      <p>אני זמין לכל שאלה, התייעצות או הצעה לשיתוף פעולה. השאירו פרטים ואחזור אליכם בהקדם.</p>
+      <Form onSubmit={handleSubmit}>
+        <Input type="text" name="name" placeholder="שם מלא" value={formData.name} onChange={handleChange} required />
+        <Input type="email" name="email" placeholder="כתובת מייל" value={formData.email} onChange={handleChange} required />
+        <Input type="tel" name="phone" placeholder="טלפון" value={formData.phone} onChange={handleChange} />
+        <Select name="subject" value={formData.subject} onChange={handleChange} required>
+          <option value="">בחר/י נושא פנייה</option>
+          <option value="ייעוץ קהילות">ייעוץ קהילות</option>
+          <option value="אוטומציה">פיתוח אוטומציה</option>
+          <option value="הרצאה">הזמנת הרצאה</option>
+          <option value="שיעור פרטי">שיעור פרטי</option>
+          <option value="אחר">אחר</option>
+        </Select>
+        <Textarea name="message" placeholder="הודעה" value={formData.message} onChange={handleChange} required />
+        <SubmitButton type="submit">שליחה</SubmitButton>
+      </Form>
+    </PageContainer>
+  );
+};
+
+export default ContactPage;
+IGNORE_WHEN_COPYING_START
+content_copy
+download
+Use code with caution.
+JavaScript
+IGNORE_WHEN_COPYING_END
+
+
+
+
+ יש עוד תכנים ורעיונות שיכולים להעשיר משמעותית את האתר, להוסיף לו עומק, אמינות, ולהפוך אותו למכונת לידים יעילה יותר. הנה רשימה מפורטת של תכנים נוספים, מחולקת לפי עמודים, שאני ממליץ בחום להוסיף לפני ששולחים לפיתוח.
+
+תוספות ועומק לתוכן האתר – זאביק אבינר
+1. לעמוד הבית (להגברת האמינות וההנעה לפעולה)
+
+כרגע עמוד הבית מציג את מה שאתה עושה. בוא נוסיף הוכחות לאיך ולמה זה עובד.
+
+סקשן "סיפור הצלחה / פרויקט נבחר"
+
+המטרה: להמחיש את היכולות שלך דרך דוגמה קונקרטית אחת חזקה.
+
+מיקום: אחרי סקשן "מה אני עושה?".
+
+תוכן:
+
+כותרת: פרויקט הדגל: קהילת "ירושלמים וירושלמיות"
+
+תת-כותרת: איך הפכנו קבוצת פייסבוק ללב הפועם של עיר שלמה
+
+טקסט קצר: "זה התחיל מרצון להכיר את השכנים והפך לרשת הקהילות הגדולה בירושלים. באמצעות ניהול שפה קפדני, אוטומציה חכמה ודגש על שיח מכבד, הקהילה מונה כיום מעל 200,000 חברים ומשפיעה באופן ישיר על סדר היום החברתי והעירוני."
+
+מספרים בולטים (עם אייקונים):
+
++500,000 חברים בכלל הרשת
+
++120 קהילות מנוהלות
+
+24/7 ניטור וניהול אוטומטי
+
+סקשן "לקוחות ממליצים" (Testimonials)
+
+המטרה: הוכחה חברתית. לתת לאחרים לדבר בשבחיך.
+
+מיקום: לפני סקשן ה-CTA הסופי.
+
+תוכן (2-3 ציטוטים קצרים):
+
+ציטוט 1 (מארגון/חברה): "הייעוץ של זאביק עזר לנו להפוך את הקהילה הדיגיטלית שלנו ממקום שקט למרכז שיח תוסס. הכלים לאוטומציה חסכו לנו שעות עבודה יקרות." - שם, תפקיד, שם הארגון.
+
+ציטוט 2 (ממנהל/ת קהילה): "ההרצאה של זאביק על ניהול שיח ברשת פתחה לנו את העיניים. הוא נתן לנו כלים פרקטיים שהתחלנו ליישם מיד וראינו תוצאות." - שם, מנהל/ת קהילת X.
+
+2. לעמודי השירותים (להפוך אותם למכירתיים יותר)
+
+כאן צריך להיות כמה שיותר ספציפיים כדי שלקוח פוטנציאלי יגיד "זה בדיוק מה שאני צריך!".
+
+לכל עמוד שירות, הוסף סעיף "איך התהליך עובד?"
+
+דוגמה ל"אוטומציה ופיתוח כלים":
+
+שלב 1: פגישת אפיון (Discovery Call) - נבין יחד את הצורך, אתגרים ונקודות הכאב בניהול היומיומי שלכם.
+
+שלב 2: הצעת פתרון - אציג תוכנית מפורטת לפתרון אוטומציה מותאם אישית.
+
+שלב 3: פיתוח והטמעה - אני מפתח את הכלי, מתקין ומטמיע אותו בקהילות שלכם.
+
+שלב 4: הדרכה וליווי - נדריך אתכם איך להשתמש בכלי בצורה המיטבית ונהיה זמינים לתמיכה.
+
+פירוט תכנים להרצאות וסדנאות:
+
+כותרת: קטלוג הרצאות וסדנאות
+
+תוכן (רשימת הרצאות לדוגמה):
+
+"ראש העיר הווירטואלי: סודות הניהול של קהילות ענק" - הרצאת השראה על בניית קהילות, התמודדות עם אתגרים ושימוש בכוח הרשת לטובה. (מתאים לקהל רחב, חברות וארגונים).
+
+"שפת הרשת: איך לנהל שיח מכבד ולמנוע שיימינג" - סדנה פרקטית למנהלי קהילות, מנהלי משאבי אנוש וצוותי דיגיטל.
+
+"מאפס לחצי מיליון: מונטיזציה של קהילות דיגיטליות" - הרצאה עסקית לבעלי עסקים ומנהלי קהילות שרוצים להפוך את הקהילה למנוע הכנסה.
+
+"AI בשרות הקהילה: אוטומציה ובינה מלאכותית למנהלים" - סדנה טכנית המציגה כלים חכמים לייעול הניהול.
+
+3. לעמוד "הסיפור שלי" (אודות)
+
+סקשן "הפילוסופיה שלי / 'האני מאמין'"
+
+המטרה: לסכם את תפיסת העולם שלך במשפטים חדים וברורים.
+
+מיקום: לקראת סוף העמוד.
+
+תוכן:
+
+כותרת: עקרונות שמנחים אותי
+
+טקסט (ב-3 נקודות עם אייקונים תואמים):
+
+(אייקון של גשר): בניית גשרים, לא חומות: אני מאמין שהטכנולוגיה צריכה לחבר בין אנשים ומגזרים. המטרה שלי היא לפרק סטריאוטיפים וליצור מרחב לשיח אמיתי.
+
+(אייקון של לב בתוך שבב): טכנולוגיה עם לב: אוטומציה וקוד הם כלים מדהימים, אבל הם תמיד צריכים לשרת את המטרה האנושית – להקל, לעזור וליצור קשר.
+
+(אייקון של מוח עם נורה): חינוך בגובה העיניים: אין דבר כזה "חומר מסובך מדי". יש רק דרך לא נכונה להסביר אותו. אני דוגל בהנגשת ידע בצורה פשוטה, סבלנית ומותאמת אישית.
+
+4. עמוד חדש מומלץ: "כלים ומדריכים" (Resources)
+
+המטרה: למצב אותך כאוטוריטה, לתת ערך בחינם לגולשים (מה שבונה אמון) ולשפר את קידום האתר בגוגל (SEO).
+
+תוכן:
+
+מדריכים להורדה (PDF):
+
+"10 כללי הזהב לניהול קהילת פייסבוק בריאה"
+
+"צ'קליסט: איך להתמודד עם פוסט שיימינג בקבוצה שלך?"
+
+קישורים לכלים מומלצים: קישורים לכלים (חינמיים או בתשלום) שאתה משתמש וממליץ עליהם למנהלי קהילות.
+
+סרטוני הדרכה נבחרים: הטמעה של 2-3 סרטוני הדרכה חזקים מערוץ היוטיוב שלך.
+
+לסיכום, התוספות הללו יעבירו את האתר שלך מהיותו "כרטיס ביקור דיגיטלי" יפה, להיות נכס שיווקי שעובד בשבילך: הוא בונה אמון, מוכיח יכולות, עונה על שאלות של לקוחות פוטנציאליים עוד לפני שהם שאלו, ומניע אותם לפעולה בצורה טבעית ומשכנעת.
